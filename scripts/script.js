@@ -50,13 +50,58 @@ Book.prototype.display = function() {
     buttons.appendChild(deleteButton);
     return;
 
+};
+
+// IIF for checking when user has confirmed a new book
+(() => {
+    let title, author, pages, read;
+    const btn = document.querySelector("#confirm-button");
+    btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        title = document.querySelector("#title").value;
+        author = document.querySelector("#author").value;
+        pages = document.querySelector("#page-count").value;
+        if (document.querySelector("#read").checked) {
+            read = true;
+        } else {
+            read = false;
+        }
+        addBookToLibrary(title, author, pages, read);
+        hideInputForm();
+    });
+})();
+
+// IIF for checking when user has decided to begin adding a new book
+(() => {
+    const btn = document.querySelector("#add-button");
+    btn.addEventListener('click', () => {
+        showInputForm();
+    });
+})();
+
+function hideInputForm() {
+    const modal = document.querySelector(".modal");
+    modal.style.display = "none";
 }
 
+function showInputForm() {
+    const modal = document.querySelector(".modal");
+    modal.style.display = "block";
+}
 
 function addBookToLibrary(title, author, pages, read) {
     let book = new Book(title, author, pages, read);
     console.log("Book added");
     myLibrary.push(book);
+    emptyLibrary();
+    displayLibrary();
+}
+
+function emptyLibrary() {
+    const main = document.querySelector("main");
+    while (main.firstChild) {
+        main.removeChild(main.firstChild);
+    }
 }
 
 function displayLibrary() {
@@ -66,7 +111,7 @@ function displayLibrary() {
     return;
 }
 
+
 addBookToLibrary("Mango", "Josh Bullocks", 74, true);
 addBookToLibrary("Harry Potter and the Half Blood Prince", "Josh Bullocks", 74, true);
 addBookToLibrary("Mango", "Josh Bullocks", 74, false);
-displayLibrary();

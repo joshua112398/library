@@ -13,14 +13,14 @@
 <body>
     <header>
         <h1>Your Library</h1>
-        <button>Add Book</button>
+        <button id="add-button">Add Book</button>
     </header>
 
     <main></main>
 
     <div class="modal">
         <div class="modal-box">
-            <form>
+            <form onsubmit>
                 <h2>Add a Book:</h2>
                 <div>
                     <label for="title">Title:</label>
@@ -31,14 +31,14 @@
                     <input id="author" name="author">
                 </div>
                 <div>
-                    <label for="Page Count">Page Count:</label>
-                    <input type="number" id="Page Count" name="Page Count">
+                    <label for="page-count">Page Count:</label>
+                    <input type="number" id="page-count" name="page-count">
                 </div>
                 <div>
                     <label for="read">Have you read this book already?</label>
                     <input type="checkbox" id="read" name="read">
                 </div>
-                <button>Confirm</button>
+                <button id="confirm-button">Confirm</button>
             </form>
         </div>
     </div>
