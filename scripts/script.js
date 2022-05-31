@@ -17,6 +17,14 @@ function addBookToLibrary() {
     myLibrary.push(book);
 }
 
-function displayBooks() {
-    
+function displayBook(book) {
+    const main = document.querySelector("main");
+    const newBook = main.createElement('div');
+    newBook.classList.add('book');
+}
+
+function displayLibrary() {
+    for (let i = 0; i < myLibrary.length; i++) {
+        displayBook(myLibrary[i]);
+    }
 }

@@ -24,6 +24,7 @@ button {
     border-radius: 25px;
     border: 0px;
     color: #f43f5e;
+    background-color: white;
 }
 
 header {
@@ -40,4 +41,31 @@ header {
 main {
     background-color: #ffe4e6;
     padding: 25px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 220px));
+    grid-auto-rows: min-content;
+    gap: 30px;
+}
+
+.book {
+    height: 250px;
+    box-sizing: border-box;
+    background-color: white;
+    box-shadow: 5px 5px 5px rgb(226, 203, 203);
+    border-left: 5px solid #f43f5e;
+    text-align: center;
+    padding: 10px;
+    display: grid;
+    grid-template-rows: auto auto auto 1fr auto;
+}
+
+h2 {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.book button {
+    border: 1px solid #f43f5e;
+    height: 30px;
+    width: 60px;
 }
