@@ -32,9 +32,9 @@ Book.prototype.display = function() {
     pages.textContent = `${this.pages} pages`;
     pages.classList.add('pages');
     newBook.appendChild(pages);
-    let readIndicator = this.read ? "already read" : "not read yet";
+    let readIndicator = this.read ? "Already read" : "Not read yet";
     const read = document.createElement('p')
-    read.textContent = `By ${this.author}`;
+    read.textContent = `${readIndicator}`;
     read.classList.add('read');
     newBook.appendChild(read);
 
@@ -67,6 +67,6 @@ function displayLibrary() {
 }
 
 addBookToLibrary("Mango", "Josh Bullocks", 74, true);
-addBookToLibrary("Mango", "Josh Bullocks", 74, true);
-addBookToLibrary("Mango", "Josh Bullocks", 74, true);
+addBookToLibrary("Harry Potter and the Half Blood Prince", "Josh Bullocks", 74, true);
+addBookToLibrary("Mango", "Josh Bullocks", 74, false);
 displayLibrary();
