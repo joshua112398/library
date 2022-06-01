@@ -1,5 +1,12 @@
 # Library
+This website lets you add books to a library collection. Each book is displayed visually on screen complete with all relevant information. You can delete a book and mark books as having been "read" to let you keep track of your reading progress. 
 
+# Features
+- Display books visually on screen
+- Show book title, author, page count, and read status
+- Enter the above information when adding a new book
+- Delete a book from the library with a single "delete" button
+- Mark a book has "already read" with a single "read" button
 
 
 # Roadblocks
