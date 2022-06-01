@@ -1,5 +1,6 @@
 let myLibrary = [];
 
+// Constructor for Book objects
 function Book(title, author, pages, read) {
     this.title = title;
     this.author = author;
@@ -12,7 +13,7 @@ Book.prototype.info = () => {
     return `${title} by ${author}, ${pages} pages, ${readIndicator}`;
 }
 
-Book.prototype.display = function() {
+Book.prototype.display = function(bookIndex) {
     const main = document.querySelector("main");
     const newBook = document.createElement('div');
     newBook.classList.add('book');
@@ -42,10 +43,19 @@ Book.prototype.display = function() {
     const buttons = document.createElement('div');
     buttons.classList.add('book-buttons');
     newBook.appendChild(buttons);
-    let readButton = document.createElement('button')
+    let readButton = document.createElement('button');
     readButton.textContent = "Read";
-    let deleteButton = document.createElement('button')
+    readButton.setAttribute('id','read-button');
+    let deleteButton = document.createElement('button');
     deleteButton.textContent = "Delete";
+    deleteButton.setAttribute('id','delete-button');
+    // Associate book's data index attribute to its delete button for easy deletion
+    deleteButton.setAttribute('data-index', `${bookIndex}`);
+    // Attach a 'click' event listener to each delete button
+    deleteButton.addEventListener('click', () => {
+        let index = deleteButton.dataset.index;
+        deleteBookFromLibrary(index);
+    });
     buttons.appendChild(readButton);
     buttons.appendChild(deleteButton);
     return;
@@ -97,6 +107,12 @@ function addBookToLibrary(title, author, pages, read) {
     displayLibrary();
 }
 
+function deleteBookFromLibrary(index) {
+    myLibrary.splice(index, 1);
+    emptyLibrary();
+    displayLibrary();
+}
+
 function emptyLibrary() {
     const main = document.querySelector("main");
     while (main.firstChild) {
@@ -106,12 +122,8 @@ function emptyLibrary() {
 
 function displayLibrary() {
     for (let i = 0; i < myLibrary.length; i++) {
-        myLibrary[i].display();
+        myLibrary[i].display(i);
     }
     return;
 }
 
-
-addBookToLibrary("Mango", "Josh Bullocks", 74, true);
-addBookToLibrary("Harry Potter and the Half Blood Prince", "Josh Bullocks", 74, true);
-addBookToLibrary("Mango", "Josh Bullocks", 74, false);
