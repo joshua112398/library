@@ -39,19 +39,28 @@ Book.prototype.display = function(bookIndex) {
     read.classList.add('read');
     newBook.appendChild(read);
 
-    // Add the Delete and Read buttons
+    // Add the Read/Unread button
     const buttons = document.createElement('div');
     buttons.classList.add('book-buttons');
     newBook.appendChild(buttons);
     let readButton = document.createElement('button');
-    readButton.textContent = "Read";
+        // Sets the button to say "Read" or "Unread" depending on if the book
+        // has already been read or not.
+    let readButtonText = this.read ? "Unread" : "Read";
+    readButton.textContent = `${readButtonText}`;
     readButton.setAttribute('id','read-button');
+        // Attach a click event listener to the Read button
+    readButton.addEventListener('click', () => {
+        toggleRead(read, readButton);
+    })
+
+    // Add the Delete button
     let deleteButton = document.createElement('button');
     deleteButton.textContent = "Delete";
     deleteButton.setAttribute('id','delete-button');
-    // Associate book's data index attribute to its delete button for easy deletion
+        // Associate book's data index attribute to its delete button for easy deletion
     deleteButton.setAttribute('data-index', `${bookIndex}`);
-    // Attach a 'click' event listener to each delete button
+        // Attach a 'click' event listener to each delete button
     deleteButton.addEventListener('click', () => {
         let index = deleteButton.dataset.index;
         deleteBookFromLibrary(index);
@@ -111,6 +120,16 @@ function deleteBookFromLibrary(index) {
     myLibrary.splice(index, 1);
     emptyLibrary();
     displayLibrary();
+}
+
+function toggleRead(readStatus, readButton) {
+    if (readStatus.textContent === "Already read") {
+        readStatus.textContent = "Not read yet";
+        readButton.textContent = "Read";
+    } else {
+        readStatus.textContent = "Already read";
+        readButton.textContent = "Unread";
+    }
 }
 
 function emptyLibrary() {
